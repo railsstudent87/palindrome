@@ -1,3 +1,5 @@
+module.exports = Phrase;
+
 // Reverses a string.
 function reverse(string) {
   return Array.from(string).reverse().join("");
@@ -23,7 +25,7 @@ function Phrase(content) {
   
   // Returns content processed for palindrome testing.
   this.processedContent = function processedContent() {
-    return this.processor(this.content);
+    return this.processor(this.letters());
   }
   
   // Returns true for a palindrome, false otherwise.
@@ -34,6 +36,12 @@ function Phrase(content) {
   this.louder = function louder() {
     return this.content.toUpperCase()
   }
+  
+  this.letters = function letters() {
+    // return Array.from(this.content).filter(ch => ch.match(/[a-z]/i)).join("");
+    return (this.content.match(/[a-z]/gi) || []).join("");
+  }
+  
 }
 
 function TranslatedPhrase(content, translation) {
